@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import pycurl
-import StringIO
+import io
 import random
 
 
@@ -11,7 +11,7 @@ class Tools :
 		pass
 
 	def getPage (self, url, requestHeader = []) :
-		resultFormate = StringIO.StringIO()
+		resultFormate = io.StringIO()
 
 		fakeIp = self.fakeIp()
 		requestHeader.append('CLIENT-IP:' + fakeIp)
@@ -33,7 +33,7 @@ class Tools :
 
 			header = resultFormate.getvalue()[0 : headerSize].split('\r\n')
 			body = resultFormate.getvalue()[headerSize : ]
-		except Exception, e:
+		except Exception as e:
 			header = ''
 			body = ''
 
@@ -42,7 +42,7 @@ class Tools :
 	def fakeIp (self) :
 		fakeIpList = []
 
-		for x in xrange(0, 4):
+		for x in range(0, 4):
 			fakeIpList.append(str(int(random.uniform(0, 255))))
 
 		fakeIp = '.'.join(fakeIpList)
@@ -53,14 +53,14 @@ class Tools :
 		stat = True
 		if x >= 0 :
 			x = str(bin(int(str(x), 10)))[2:]
-			for i in xrange(0, base - len(x)):
+			for i in range(0, base - len(x)):
 				x = '0' + x
 		else :
 			x = str(bin(int(str(x + 1), 10)))[3:]
-			for i in xrange(0, base - len(x)):
+			for i in range(0, base - len(x)):
 				x = '0' + x
 			t = ''
-			for i in xrange(0,len(x)):
+			for i in range(0,len(x)):
 				if x[i] == '1' :
 					t = t + '0'
 				else :
@@ -68,21 +68,21 @@ class Tools :
 			x = t
 		if y >= 0 :
 			y = str(bin(int(str(y), 10)))[2:]
-			for i in xrange(0, base - len(y)):
+			for i in range(0, base - len(y)):
 				y = '0' + y
 		else :
 			y = str(bin(int(str(y + 1), 10)))[3:]
-			for i in xrange(0, base - len(y)):
+			for i in range(0, base - len(y)):
 				y = '0' + y
 			t = ''
-			for i in xrange(0,len(y)):
+			for i in range(0,len(y)):
 				if y[i] == '1' :
 					t = t + '0'
 				else :
 					t = t + '1'
 			y = t
 		t = ''
-		for i in xrange(0, base):
+		for i in range(0, base):
 			if x[i] == y[i] :
 				t = t + '0'
 			else :
@@ -91,7 +91,7 @@ class Tools :
 		if x[0] == '1' :
 			stat = False
 			t = ''
-			for i in xrange(0,len(x)):
+			for i in range(0,len(x)):
 				if x[i] == '1' :
 					t = t + '0'
 				else :
@@ -107,14 +107,14 @@ class Tools :
 		stat = True
 		if x >= 0 :
 			x = str(bin(int(str(x), 10)))[2:]
-			for i in xrange(0, base - len(x)):
+			for i in range(0, base - len(x)):
 				x = '0' + x
 		else :
 			x = str(bin(int(str(x + 1), 10)))[3:]
-			for i in xrange(0, base - len(x)):
+			for i in range(0, base - len(x)):
 				x = '0' + x
 			t = ''
-			for i in xrange(0,len(x)):
+			for i in range(0,len(x)):
 				if x[i] == '1' :
 					t = t + '0'
 				else :
@@ -122,7 +122,7 @@ class Tools :
 			x = t
 		if y >= base :
 			y = y % base
-		for i in xrange (0, y) :
+		for i in range (0, y) :
 			if w != 'r+' :
 				x = x[0] + x + '0'
 			else :
@@ -134,7 +134,7 @@ class Tools :
 		if x[0] == '1' :
 			stat = False
 			t = ''
-			for i in xrange(0,len(x)):
+			for i in range(0,len(x)):
 				if x[i] == '1' :
 					t = t + '0'
 				else :

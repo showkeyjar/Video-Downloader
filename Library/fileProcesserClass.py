@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import urllib
-import urllib2
+import urllib.request
 import os
 import time
 import threading
@@ -32,10 +32,10 @@ class FileProcesser :
 		self.fileID = 1
 		for url in self.fileUrl:
 			try:
-				request = urllib2.Request(url)
+				request = urllib.request.Request(url)
 				request.add_header('User-Agent', self.ua)
 				request.add_header('Range', 'bytes=0-')
-				response = urllib2.urlopen(request)
+				response = urllib.request.urlopen(request)
 
 				pageInfo = response.info()
 				fileLength = pageInfo.getheader('Content-Length').strip()
@@ -62,7 +62,7 @@ class FileProcesser :
 					else :
 						self.process = '下载完成'
 						break
-			except Exception, e:
+			except Exception as e:
 				self.process = "下载失败"
 				exit()
 
