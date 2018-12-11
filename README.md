@@ -1,6 +1,13 @@
 # Video-Downloader
 
-Link：http://evilcult.github.io/Video-Downloader/
+视频数据下载工具
 
-# 近期重心转移至此：
-新项目推广一下：https://github.com/EvilCult/moviecatcher
+
+
+## 使用方法
+1.先抓取视频url:
+
+    scrapy crawl videobot -o videos.jl
+    
+2.再使用Video-Downloader下载视频
+

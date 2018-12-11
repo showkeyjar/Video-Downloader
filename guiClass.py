@@ -3,8 +3,8 @@
 import _tkinter
 import tkinter
 import tkinter.ttk as ttk
-import tkinter.messagebox
-import tkinter.filedialog
+import tkinter.messagebox as messagebox
+import tkinter.filedialog as filedialog
 import os
 import sys
 import threading
